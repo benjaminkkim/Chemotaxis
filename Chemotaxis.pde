@@ -1,78 +1,57 @@
-Bacteria [] ecoli;
-Bacteria [] virus;
-Bacteria [] corona;
- void setup()
- {
-   size(500,500);
-   ecoli = new Bacteria[70];
-   for(int i = 0; i < ecoli.length; i++){
-     ecoli[i] = new Bacteria();
-   }
-   virus = new Bacteria[70];
-   for(int i = 0; i < virus.length; i++){
-     virus[i] = new Bacteria();
-   }
-   corona = new Bacteria[70];
-   for(int i = 0; i < virus.length; i++){
-     corona[i] = new Bacteria();
-   }
- }
- void draw()
- {
-   background(128,128,128);
-   for(int i = 0; i < ecoli.length; i++){
-     ecoli[i].walk();
-     ecoli[i].show();
-   }
-   for(int i = 0; i < ecoli.length; i++){
-     virus[i].viruswalk();
-     virus[i].virusshow();
-   }
-   for(int i = 0; i < ecoli.length; i++){
-     corona[i].coronawalk();
-     corona[i].coronashow();
-   }
- }  
- class Bacteria
- {        
-   int MyX, MyY;
-   Bacteria()
-   {
-     MyX = width/2;
-     MyY = height/2;
-   }         
-   void walk()
-   {
-     MyX = MyX + (int)(Math.random()*9)-4;
-     MyY = MyY + (int)(Math.random()*9)-4;
-   }      
-   void show()
-   {
-     fill(#C04BA0);
-     rect(MyX,MyY,30,10,45);
-   }  
-   void viruswalk()
-   {
-     MyX = MyX + (int)(Math.random()*11)-5;
-     MyY = MyY + (int)(Math.random()*11)-5;
-   }
-   void virusshow()
-   {
-     fill(#B9D445);
-     ellipse(MyX,MyY,10,10);
-   }
-   void coronawalk()
-   {
-     MyX = MyX + (int)(Math.random()*15)-7;
-     MyY = MyY + (int)(Math.random()*15)-7;
-   }
-   void coronashow()
-   {
-     fill(#FB0100);
-     ellipse(MyX,MyY,10,10);
-     ellipse(MyX+5,MyY+5,5,5);
-     ellipse(MyX-5,MyY+5,5,5);
-     ellipse(MyX+5,MyY-5,5,5);
-     ellipse(MyX-5,MyY-5,5,5);
-   }
- }    
+Move [] colors;
+class Move{
+  int myX, myY, myColor;
+  Move(){
+    myColor = color(255,255,255);
+    myX = width/2;
+    myY = height/2;
+  }
+  Move(int x, int y){
+    myX = x;
+    myY = y;
+    myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+  }
+  void walk(){
+    myX = myX + (int)(Math.random()*3)-1;
+    myY = myY + (int)(Math.random()*3)-1;
+  }
+  void show(){
+    fill(myColor);
+    noStroke();
+    ellipse(myX,myY,5,5);
+  }
+}
+void mousePressed(){
+  background(200);
+  redraw();
+  int myX = 250;
+  int myY = 250;
+  if(mouseX < myX){
+    myX = myX - (int)(Math.random()*500);
+  }
+  if(mouseY > myX){
+    myX = myX + (int)(Math.random()*500);
+  }
+  if(mouseY < myY){
+    myY = myY - (int)(Math.random()*500);
+  }
+  if(mouseY > myY){
+    myY = myY + (int)(Math.random()*500);
+  }
+}
+void setup(){
+  background(200);
+  size(500,500);
+  colors = new Move[3000];
+  for(int i = 0; i < colors.length; i++){
+    colors[i] = new Move((int)(Math.random()*width), (int)(Math.random()*height));
+  }
+}
+void draw(){
+  int x = 250;
+  ellipse(x,250,3,3);
+  for(int i = 0; i < colors.length; i++){
+    colors[i].walk();
+    colors[i].show();
+  }
+}
