@@ -65,8 +65,8 @@ Bacteria [] corona;
    }  
    void viruswalk()
    {
-     MyX = MyX + (int)(Math.random()*5)-3;
-     MyY = MyY + (int)(Math.random()*5)-3;
+     MyX = MyX + (int)(Math.random()*3)-1;
+     MyY = MyY + (int)(Math.random()*3)-1;
      if(mouseX > MyX){
        MyX = MyX + (int)(Math.random()*5);
      }
@@ -87,8 +87,8 @@ Bacteria [] corona;
    }
    void coronawalk()
    {
-     MyX = MyX + (int)(Math.random()*7)-5;
-     MyY = MyY + (int)(Math.random()*7)-5;
+     MyX = MyX + (int)(Math.random()*3)-1;
+     MyY = MyY + (int)(Math.random()*3)-1;
      if(mouseX > MyX){
        MyX = MyX + (int)(Math.random()*7);
      }
@@ -111,4 +111,4 @@ Bacteria [] corona;
      ellipse(MyX+5,MyY-5,5,5);
      ellipse(MyX-5,MyY-5,5,5);
    }
- }    
+ }
